@@ -1,14 +1,12 @@
 "use strict";
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports["default"] = void 0;
 var _mongoose = require("mongoose");
-var _mongoosePaginateV = _interopRequireDefault(require("mongoose-paginate-v2"));
 //mongoose paginate es una libreria de mongoose que nos ahorra la configuracion para la paginacion y la deja lista
-
+// import MongoosePaginate from "mongoose-paginate-v2";
 //EL esquema es para que mongoose sepa que datos estoy guardando
 
 //la propiedad trim es de js y lo que hace es que elimina los espacios vacíos en los strings
@@ -74,6 +72,6 @@ var birdSchema = new _mongoose.Schema({
 });
 
 //model es para poder interactuar desde el cófigo como crear, leer, modificar, etc.
-birdSchema.plugin(_mongoosePaginateV["default"]);
+// birdSchema.plugin(MongoosePaginate);
 var _default = (0, _mongoose.model)("Bird", birdSchema);
 exports["default"] = _default;

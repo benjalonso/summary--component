@@ -9,53 +9,64 @@ var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"))
 var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
 var _express = require("express");
 var _Birds_models = _interopRequireDefault(require("../models/Birds_models.js"));
-var _getPagination2 = _interopRequireDefault(require("../libs/getPagination.js"));
+var _getPagination = _interopRequireDefault(require("../libs/getPagination.js"));
+// export const getAllBirds = async (req, res) => {
+//   try {
+//     const { size, page, name } = req.query;
+
+//     const condition = name
+//       ? {
+//           //en caso que le titulo exista creamos un obj que tenga la propiedad title que contenga una regex que estará basada en el titulo que le está pasando el cliente
+//           name: { $regex: new RegExp(name), $options: "i" },
+//         }
+//       : {};
+// console.log(condition)
+//     const { limit, offset } = getPagination(page, size);
+//     const birds = await Bird.paginate({}, { offset, limit });
+//     //podemos personalizar la respuesta de birds creando un obj con la propiedades que necesitamos
+//     res.json(birds);
+//   } catch (error) {
+//     res.status(500).json({
+//       message: error.message || "Something goes wrong",
+//     });
+//   }
+// };
+
 var getAllBirds = /*#__PURE__*/function () {
   var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(req, res) {
-    var _req$query, size, page, title, condition, _getPagination, limit, offset, birds;
+    var page, limit, birds;
     return _regenerator["default"].wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
             _context.prev = 0;
-            _req$query = req.query, size = _req$query.size, page = _req$query.page, title = _req$query.title;
-            condition = title ? {
-              //en caso que le titulo exista creamos un obj que tenga la propiedad title que contenga una regex que estará basada en el titulo que le está pasando el cliente
-              title: {
-                $regex: new RegExp(title),
-                $options: "i"
-              }
-            } : {};
-            _getPagination = (0, _getPagination2["default"])(page, size), limit = _getPagination.limit, offset = _getPagination.offset;
-            _context.next = 6;
-            return _Birds_models["default"].paginate(condition, {
-              offset: offset,
-              limit: limit
-            });
-          case 6:
+            page = req.query.page || 0;
+            limit = req.query.limit || 3;
+            _context.next = 5;
+            return _Birds_models["default"].find().skip(page * limit).limit(limit);
+          case 5:
             birds = _context.sent;
             //podemos personalizar la respuesta de birds creando un obj con la propiedades que necesitamos
             res.json(birds);
-            _context.next = 13;
+            _context.next = 12;
             break;
-          case 10:
-            _context.prev = 10;
+          case 9:
+            _context.prev = 9;
             _context.t0 = _context["catch"](0);
             res.status(500).json({
               message: _context.t0.message || "Something goes wrong"
             });
-          case 13:
+          case 12:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 10]]);
+    }, _callee, null, [[0, 9]]);
   }));
   return function getAllBirds(_x, _x2) {
     return _ref.apply(this, arguments);
   };
 }();
-///hola mundo ddd
 //almacenamos el objeto en una constante y de manera asíncrona guardamos ese objeto en la base de datos con el método .save() y como despuesta enviamos un mensaje para dar aviso que el objeto se ha añadido a la base de dato.
 exports.getAllBirds = getAllBirds;
 var createBird = /*#__PURE__*/function () {

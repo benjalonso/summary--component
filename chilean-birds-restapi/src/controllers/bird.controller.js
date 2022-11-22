@@ -2,19 +2,34 @@ import { json } from "express";
 import Bird from "../models/Birds_models.js";
 import getPagination from "../libs/getPagination.js";
 
+// export const getAllBirds = async (req, res) => {
+//   try {
+//     const { size, page, name } = req.query;
+
+//     const condition = name
+//       ? {
+//           //en caso que le titulo exista creamos un obj que tenga la propiedad title que contenga una regex que estará basada en el titulo que le está pasando el cliente
+//           name: { $regex: new RegExp(name), $options: "i" },
+//         }
+//       : {};
+// console.log(condition)
+//     const { limit, offset } = getPagination(page, size);
+//     const birds = await Bird.paginate({}, { offset, limit });
+//     //podemos personalizar la respuesta de birds creando un obj con la propiedades que necesitamos
+//     res.json(birds);
+//   } catch (error) {
+//     res.status(500).json({
+//       message: error.message || "Something goes wrong",
+//     });
+//   }
+// };
+
 export const getAllBirds = async (req, res) => {
   try {
-    const { size, page, title } = req.query;
+    const page = req.query.page || 0;
+    const limit = req.query.limit || 3;
 
-    const condition = title
-      ? {
-          //en caso que le titulo exista creamos un obj que tenga la propiedad title que contenga una regex que estará basada en el titulo que le está pasando el cliente
-          title: { $regex: new RegExp(title), $options: "i" },
-        }
-      : {};
-
-    const { limit, offset } = getPagination(page, size);
-    const birds = await Bird.paginate(condition, { offset, limit });
+    const birds = await Bird.find().skip(page * limit).limit(limit);
     //podemos personalizar la respuesta de birds creando un obj con la propiedades que necesitamos
     res.json(birds);
   } catch (error) {

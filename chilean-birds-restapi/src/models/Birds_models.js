@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
 //mongoose paginate es una libreria de mongoose que nos ahorra la configuracion para la paginacion y la deja lista
-import MongoosePaginate from "mongoose-paginate-v2";
+// import MongoosePaginate from "mongoose-paginate-v2";
 //EL esquema es para que mongoose sepa que datos estoy guardando
 
 //la propiedad trim es de js y lo que hace es que elimina los espacios vacíos en los strings
@@ -69,5 +69,5 @@ const birdSchema = new Schema(
 );
 
 //model es para poder interactuar desde el cófigo como crear, leer, modificar, etc.
-birdSchema.plugin(MongoosePaginate);
+// birdSchema.plugin(MongoosePaginate);
 export default model("Bird", birdSchema);
