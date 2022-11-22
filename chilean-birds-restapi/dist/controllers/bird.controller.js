@@ -55,7 +55,7 @@ var getAllBirds = /*#__PURE__*/function () {
     return _ref.apply(this, arguments);
   };
 }();
-
+///hola mundo ddd
 //almacenamos el objeto en una constante y de manera asíncrona guardamos ese objeto en la base de datos con el método .save() y como despuesta enviamos un mensaje para dar aviso que el objeto se ha añadido a la base de dato.
 exports.getAllBirds = getAllBirds;
 var createBird = /*#__PURE__*/function () {
