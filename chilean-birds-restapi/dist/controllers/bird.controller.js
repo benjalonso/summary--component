@@ -43,28 +43,29 @@ var getAllBirds = /*#__PURE__*/function () {
             page = req.query.page || 0;
             limit = req.query.limit || 3;
             name = req.query.name;
-            _context.next = 6;
+            console.log(name);
+            _context.next = 7;
             return _Birds_models["default"].find({
               spanish: name
             }).skip(page * limit).limit(limit);
-          case 6:
+          case 7:
             birds = _context.sent;
             //podemos personalizar la respuesta de birds creando un obj con la propiedades que necesitamos
             res.json(birds);
-            _context.next = 13;
+            _context.next = 14;
             break;
-          case 10:
-            _context.prev = 10;
+          case 11:
+            _context.prev = 11;
             _context.t0 = _context["catch"](0);
             res.status(500).json({
               message: _context.t0.message || "Something goes wrong"
             });
-          case 13:
+          case 14:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 10]]);
+    }, _callee, null, [[0, 11]]);
   }));
   return function getAllBirds(_x, _x2) {
     return _ref.apply(this, arguments);
