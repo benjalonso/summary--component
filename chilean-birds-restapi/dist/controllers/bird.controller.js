@@ -34,7 +34,7 @@ var _getPagination = _interopRequireDefault(require("../libs/getPagination.js"))
 
 var getAllBirds = /*#__PURE__*/function () {
   var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(req, res) {
-    var page, limit, birds;
+    var page, limit, name, birds;
     return _regenerator["default"].wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -42,26 +42,29 @@ var getAllBirds = /*#__PURE__*/function () {
             _context.prev = 0;
             page = req.query.page || 0;
             limit = req.query.limit || 3;
-            _context.next = 5;
-            return _Birds_models["default"].find().skip(page * limit).limit(limit);
-          case 5:
+            name = req.query.name;
+            _context.next = 6;
+            return _Birds_models["default"].find({
+              spanish: name
+            }).skip(page * limit).limit(limit);
+          case 6:
             birds = _context.sent;
             //podemos personalizar la respuesta de birds creando un obj con la propiedades que necesitamos
             res.json(birds);
-            _context.next = 12;
+            _context.next = 13;
             break;
-          case 9:
-            _context.prev = 9;
+          case 10:
+            _context.prev = 10;
             _context.t0 = _context["catch"](0);
             res.status(500).json({
               message: _context.t0.message || "Something goes wrong"
             });
-          case 12:
+          case 13:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 9]]);
+    }, _callee, null, [[0, 10]]);
   }));
   return function getAllBirds(_x, _x2) {
     return _ref.apply(this, arguments);

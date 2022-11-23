@@ -28,8 +28,11 @@ export const getAllBirds = async (req, res) => {
   try {
     const page = req.query.page || 0;
     const limit = req.query.limit || 3;
-
-    const birds = await Bird.find().skip(page * limit).limit(limit);
+    const name = req.query.name;
+console.log(name)
+    const birds = await Bird.find({spanish: name})
+      .skip(page * limit)
+      .limit(limit);
     //podemos personalizar la respuesta de birds creando un obj con la propiedades que necesitamos
     res.json(birds);
   } catch (error) {
