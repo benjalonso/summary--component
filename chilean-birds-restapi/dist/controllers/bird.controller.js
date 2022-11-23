@@ -7,31 +7,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.modifyBird = exports.getOneBird = exports.getByType = exports.getAllBirds = exports.deleteBird = exports.createBird = void 0;
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
-var _express = require("express");
 var _Birds_models = _interopRequireDefault(require("../models/Birds_models.js"));
-var _getPagination = _interopRequireDefault(require("../libs/getPagination.js"));
-// export const getAllBirds = async (req, res) => {
-//   try {
-//     const { size, page, name } = req.query;
-
-//     const condition = name
-//       ? {
-//           //en caso que le titulo exista creamos un obj que tenga la propiedad title que contenga una regex que estará basada en el titulo que le está pasando el cliente
-//           name: { $regex: new RegExp(name), $options: "i" },
-//         }
-//       : {};
-// console.log(condition)
-//     const { limit, offset } = getPagination(page, size);
-//     const birds = await Bird.paginate({}, { offset, limit });
-//     //podemos personalizar la respuesta de birds creando un obj con la propiedades que necesitamos
-//     res.json(birds);
-//   } catch (error) {
-//     res.status(500).json({
-//       message: error.message || "Something goes wrong",
-//     });
-//   }
-// };
-
 var getAllBirds = /*#__PURE__*/function () {
   var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(req, res) {
     var page, limit, name, birds;
@@ -41,17 +17,17 @@ var getAllBirds = /*#__PURE__*/function () {
           case 0:
             _context.prev = 0;
             page = req.query.page || 0;
-            limit = req.query.limit || 3;
+            limit = req.query.limit || 1;
             name = req.query.name;
-            console.log(name);
-            _context.next = 7;
-            return _Birds_models["default"].find({
+            _context.next = 6;
+            return _Birds_models["default"].find(name && {
               spanish: name
             }).skip(page * limit).limit(limit);
-          case 7:
+          case 6:
             birds = _context.sent;
             //podemos personalizar la respuesta de birds creando un obj con la propiedades que necesitamos
             res.json(birds);
+            console.log(birds);
             _context.next = 14;
             break;
           case 11:

@@ -3,9 +3,9 @@ import Bird from "../models/Birds_models.js";
 export const getAllBirds = async (req, res) => {
   try {
     const page = req.query.page || 0 ;
-    const limit = req.query.limit || 4;
-    const name = req.query.name;
-    const birds = await Bird.find().where({spanish:name})
+    const limit = req.query.limit || 1;
+    const name = req.query.name 
+    const birds = await Bird.find(name && {spanish:name} )
     .skip(page * limit)
     .limit(limit);
     //podemos personalizar la respuesta de birds creando un obj con la propiedades que necesitamos
