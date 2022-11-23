@@ -32,6 +32,6 @@ app.get("/", (req, res) => {
 });
 
 //aquí usamos la ruta principal
-app.use("/api", BirdsRoutes);
+app.use("/", BirdsRoutes);
 
 export default app;
