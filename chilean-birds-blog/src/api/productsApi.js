@@ -2,12 +2,13 @@ import axios from "axios";
 
 //configuracion de una instancia de axios, funciona similar a fetch
 const birdsApi = axios.create({
-  baseURL: "https://chilean-birds-restapi-production.up.railway.app",
-  // baseURL: "https://aves.ninjas.cl/api/",
+  // baseURL: "https://chilean-birds-restapi-production.up.railway.app",
+  baseURL: "http://localhost:3200",
+
 });
 
-export const getBirds = async () => {
-  const res = await birdsApi.get("/birds?page=0&limit=8");
+export const getBirds = async (page=0,limit=8) => {
+  const res = await birdsApi.get(`/birds?page=${page}&limit=${limit}`)
   // const res = await birdsApi.get("/birds");
   // console.log(res.data);
   return res.data;

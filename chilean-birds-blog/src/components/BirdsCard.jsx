@@ -10,7 +10,7 @@ const BirdsCard = ({ img, spanish, latin, key }) => {
       <div className="rounded-lg overflow-hidden h-full w-full">
         <img className="rounded-lg object-cover h-full w-full" src={img} alt="image_card" />
       </div>
-      <BsFillBookmarkFill className="absolute top-2 left-36 text-green-50 dark:text-slate-50 text-[15px] hover:text-green-600 opacity-75 invisible  group-hover/item:visible transition ease-in-out delay-150   group-active:scale-125  duration-300" />
+      <BsFillBookmarkFill className="absolute top-2 left-[125px] text-green-400 dark:text-slate-500 text-[15px] hover:text-green-600 dark:hover:text-slate-900  invisible group-hover/item:visible transition  ease-in-out delay-300   hover:scale-125" />
       <span className="absolute top-[6,5rem] left-2 text-teal-700 text-[12px] dark:text-slate-50 ">
         {latin}
       </span>
