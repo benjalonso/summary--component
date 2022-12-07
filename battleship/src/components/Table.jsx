@@ -1,48 +1,26 @@
 import React, { useRef } from "react";
-import Ships from "./Ships";
 import Square from "./Square";
-import { useEffect } from "react";
-import { useState } from "react";
-import { useId } from "react";
-export const Table = () => {
-  const [hostBoard, setHostBoard] = useState(new Array(100).fill(0));
-  const [enemyBoard, setEnemyBoard] = useState(null);
-  let neutral = "bg-sky-300";
-  let miss = "bg-sky-100";
-  let hit = "bg-red-300";
-  let table = [];
-  let width = 10;
-  let randomStart = Math.abs(Math.floor(Math.random() * 100))
-  // console.log(randomStart)
 
-  useEffect(() => {
-    for (let i = 0; i < width * width; i++)
-      if (hostBoard[randomStart] == 1) {
-        table.push(<Square color={miss} id={i} key={i} />);
-        // return true;
-      } else if (hostBoard[randomStart] == 2) {
-        table.push(<Square color={hit} id={i} key={i} />);
-        // return false;
-      } else {
-        table.push(<Square color={neutral} id={i} key={i} />);
+export const Table = ({ player, cpuBoard, setCpuBoard, gameWon, cpuShips }) => {
+
+  const grid = () => {
+    let table = [];
+    for (let i = 0; i < 10; i++)
+      for (let j = 0; j < 10; j++) {
+        table.push(
+          <Square
+          cpuShips={cpuShips}
+            key={`${j} ${i}`}
+            coords={j + i * 10}
+            board={player}
+            cpuBoard={cpuBoard}
+            setCpuBoard={setCpuBoard}
+            gameWon={gameWon}
+          />
+        );
       }
-    setHostBoard(table);
-  }, []);
-
-  function handleClick(uiGrid) {}
-
-  function renderColors(x, y, grid) {
-    if (grid[y][x] == 1) {
-      table.push(<Square color={hit} />);
-      // return true;
-    } else if (grid[y][x] == 2) {
-      table.push(<Square color={miss} />);
-      // return false;
-    } else {
-      table.push(<Square color={neutral} />);
-    }
-    console.log(table);
-  }
+    return table;
+  };
 
   return (
     <>
@@ -58,13 +36,13 @@ export const Table = () => {
             Reset Game
           </button>
         </div>
-        {/* <h3 className="text-center text-xl">Your turn</h3> */}
+        <h3 className="text-center text-xl">Your turn</h3>
       </div>
       <div className="grid grid-cols-2 gap-20">
-        <div className="grid grid-cols-10">{hostBoard}</div>
-        <div className="grid grid-cols-10 ">{enemyBoard}</div>
+        {/* <div className="grid grid-cols-10">{hostBoard}</div> */}
+        <div className="grid grid-cols-10 ">{grid()}</div>
       </div>
-      <Ships />
+
     </>
   );
 };
