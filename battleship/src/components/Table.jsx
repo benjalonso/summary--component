@@ -1,21 +1,52 @@
-import React from "react";
-import Square from "./Square";
+import React, { useRef } from "react";
 import Ships from "./Ships";
-
+import Square from "./Square";
+import { useEffect } from "react";
+import { useState } from "react";
+import { useId } from "react";
 export const Table = () => {
+  const [hostBoard, setHostBoard] = useState(new Array(100).fill(0));
+  const [enemyBoard, setEnemyBoard] = useState(null);
+  let neutral = "bg-sky-300";
+  let miss = "bg-sky-100";
+  let hit = "bg-red-300";
+  let table = [];
+  let width = 10;
+  let randomStart = Math.abs(Math.floor(Math.random() * 100))
+  // console.log(randomStart)
 
-const table = new Array(100).fill(null);
-let hostTable = table.fill(<Square/>)
-let enemysTable = table.fill(<Square/>)
-let directions = ['x', 'y']
-function generate(direction, ship, squares) {
-  let randomDirection = dir[Math.floor(Math.random() * direction.length)];
-  let current = ship.directions[randomDirection];
-}
+  useEffect(() => {
+    for (let i = 0; i < width * width; i++)
+      if (hostBoard[randomStart] == 1) {
+        table.push(<Square color={miss} id={i} key={i} />);
+        // return true;
+      } else if (hostBoard[randomStart] == 2) {
+        table.push(<Square color={hit} id={i} key={i} />);
+        // return false;
+      } else {
+        table.push(<Square color={neutral} id={i} key={i} />);
+      }
+    setHostBoard(table);
+  }, []);
+
+  function handleClick(uiGrid) {}
+
+  function renderColors(x, y, grid) {
+    if (grid[y][x] == 1) {
+      table.push(<Square color={hit} />);
+      // return true;
+    } else if (grid[y][x] == 2) {
+      table.push(<Square color={miss} />);
+      // return false;
+    } else {
+      table.push(<Square color={neutral} />);
+    }
+    console.log(table);
+  }
 
   return (
     <>
-      <div className="bg-slate-300 m-2 rounded">
+      <div className="bg-slate-300 m-1 rounded">
         <div className="grid grid-cols-3 place-content-center">
           <button className="border border-cyan-800 m-2" id="start">
             Start Game
@@ -27,14 +58,11 @@ function generate(direction, ship, squares) {
             Reset Game
           </button>
         </div>
-        <h3 className="text-center text-xl">Your turn</h3>
-        <h4 className="text-center ">
-          <span id="host-score">0</span > - <span id="guest-score">0</span>
-        </h4>
+        {/* <h3 className="text-center text-xl">Your turn</h3> */}
       </div>
       <div className="grid grid-cols-2 gap-20">
-        <div className="grid grid-cols-10">{hostTable}</div>
-        <div className="grid grid-cols-10 ">{enemysTable}</div>
+        <div className="grid grid-cols-10">{hostBoard}</div>
+        <div className="grid grid-cols-10 ">{enemyBoard}</div>
       </div>
       <Ships />
     </>

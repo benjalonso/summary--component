@@ -5,3 +5,10 @@
 .taken {
     background-color: brown;
 }
+
+.miss{
+    background-color: gray;
+}
+.hit{
+    background-color: blueviolet;
+}
