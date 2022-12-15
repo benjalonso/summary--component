@@ -2,15 +2,21 @@ import Bird from "../models/Birds_models.js";
 
 export const getAllBirds = async (req, res) => {
   try {
-    const page = req.query.page || 0 ;
+    const page = req.query.page || 0;
     const limit = req.query.limit || 1;
-    const name = req.query.name 
-    const birds = await Bird.find(name && {spanish:name} )
-    .skip(page * limit)
-    .limit(limit);
+    const name = req.query.name;
+    const birds = await Bird.find(name && { spanish: name })
+      .skip(page * limit)
+      .limit(limit)
+      const totalBirds = await Bird.find()
+      .estimatedDocumentCount()
     //podemos personalizar la respuesta de birds creando un obj con la propiedades que necesitamos
-    res.json(birds);
-    console.log(birds)
+    res.json({
+      birds: birds,
+      totalCount: totalBirds,
+      totalPages: Math.trunc(totalBirds/limit)
+    });
+ 
   } catch (error) {
     res.status(500).json({
       message: error.message || "Something goes wrong",

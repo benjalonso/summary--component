@@ -17,7 +17,7 @@ import BirdsRoutes from "./routes/birds.routes.js";
 const app = express();
 
 //usamos el modulo set para definir la variable port y si modificamos el puerto, solo lo hacemos desde aquí.
-app.set("port", process.env.PORT || 3000);
+app.set("port", process.env.PORT || 3200);
 //
 //middlewares
 //
