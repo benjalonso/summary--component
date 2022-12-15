@@ -17,9 +17,18 @@ const Footer = () => {
         <span className="text-xs">alonsobenjaminlb@gmail.com</span>
       </div>
       <div className="grid grid-cols-3 place-items-center w-28 mx-auto">
-        <AiOutlineInstagram />
-        <AiOutlineLinkedin />
-        <AiOutlineGithub />
+        <a href="http://www.instagram.com/bemjadev/" target="_blank">
+          <AiOutlineInstagram className="cursor-pointer" />
+        </a>
+        <a
+          href="https://www.linkedin.com/in/benjam%C3%ADn-alonso-larenas-bravo-23129220a/"
+          target="_blank"
+        >
+          <AiOutlineLinkedin />
+        </a>
+        <a href="https://github.com/benjalonso" target="_blank">
+          <AiOutlineGithub />
+        </a>
       </div>
     </div>
   );
