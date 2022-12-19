@@ -8,7 +8,7 @@ const birdsApi = axios.create({
 });
 
 export const getBirds = async (page=0) => {
-  const res = await birdsApi.get(`/birds?page=${page}&limit=4`)
+  const res = await birdsApi.get(`/birds?page=${page}&limit=8`)
   // const res = await birdsApi.get("/birds");
   // console.log(res.data);
   return res.data;
