@@ -9,10 +9,11 @@ export const ContentContext = createContext(null);
 
 function App() {
   const [content, setContent] = useState([]);
-  const [favorite, setFavite] = useState([])
+  const [favorite, setFavite] = useState([]);
+  const [modal, setModal] = useState("block");
   return (
-    <ContentContext.Provider value={{ content, setContent }}>
-      <BirdDetail/>
+    <ContentContext.Provider value={{ content, setContent, modal, setModal }}>
+      <BirdDetail />
       <NavBar />
       <PopularCardsContainer />
       <BirdCardsContainer />

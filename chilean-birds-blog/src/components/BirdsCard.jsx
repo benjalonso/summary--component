@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { BsFillBookmarkFill } from "react-icons/bs";
+import { ContentContext } from "./App";
 
-const BirdsCard = ({ img, spanish, latin, key }) => {
+const BirdsCard = ({ img, spanish, latin }) => {
+  const { modal, setModal } = useContext(ContentContext);
+  // console.log(modal);
+
+  const handleModal = () => setModal(!modal);
+
   return (
     <div
-      key={key}
+      onClick={handleModal}
       className="font-semibold dark:font-normal h-28 w-40 mx-5 my-5 gap-2 shrink-0 snap-always rounded-lg relative group/item cursor-pointer"
     >
       <div className="rounded-lg overflow-hidden h-full w-full">
