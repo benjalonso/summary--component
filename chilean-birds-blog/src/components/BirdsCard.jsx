@@ -6,7 +6,7 @@ const BirdsCard = ({ img, spanish, latin }) => {
   const { modal, setModal } = useContext(ContentContext);
   // console.log(modal);
 
-  const handleModal = () => setModal(!modal);
+  const handleModal = () => setModal('block');
 
   return (
     <div
