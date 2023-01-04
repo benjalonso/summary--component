@@ -2,18 +2,16 @@ import React from "react";
 import BirdsCard from "./BirdsCard";
 import Pagination from "./Pagination.jsx";
 import getBirds from "../api/productsApi.js";
-import { useQuery, useIsFetching } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { useState, useContext, useMemo } from "react";
 import { ContentContext } from "./App";
 
 const BirdCardsContainer = () => {
-  const { content, setContent, prefetchQuery, modal, setModal } =
-    useContext(ContentContext);
+  const { content, setContent } = useContext(ContentContext);
   //isLoading e isError solo evaluan si paso o no, por lo tanto devuelven un boolean, error nos envia todo el error
 
   //queryKey conecta los datos de la peticion dentro de un objeto que designamos para almacenar en caché
   const [page, setPage] = useState(0);
-  const isFetching = useIsFetching();
 
   const { isLoading, data, isError, error, isSuccess, isPreviousData } =
     useQuery({
@@ -21,29 +19,30 @@ const BirdCardsContainer = () => {
       queryFn: () => getBirds(page),
       keepPreviousData: true,
     });
+
   const handleCards = async () => {
     setContent(
       await data?.birds?.map((b) => {
         return (
           <BirdsCard
-            // modal={modal}
-            // setModal={setModal}
             key={b._id}
             img={b.main}
             spanish={b.spanish}
             latin={b.latin}
+            full={b.full}
+            thumbnail={b.thumbnail}
+            data={{ ...data }}
           />
         );
       })
     );
   };
-
-  const handleRender = useMemo(() => handleCards(), [content]);
+  const handleRender = useMemo(() => handleCards(), [data]);
 
   const displayData = async () => {
-    if (isFetching) <div className="text-5xl"> Loading</div>;
+    if (isLoading) <div className="text-5xl"> Loading</div>;
     else if (isSuccess) {
-      handleRender
+      handleRender;
     } else if (isError) <div className="text-5xl"> Error: {error.message}</div>;
   };
   window.addEventListener("load", displayData());
