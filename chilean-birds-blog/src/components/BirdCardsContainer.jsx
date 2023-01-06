@@ -7,7 +7,10 @@ import { useState, useContext, useMemo } from "react";
 import { ContentContext } from "./App";
 
 const BirdCardsContainer = () => {
-  const { content, setContent } = useContext(ContentContext);
+  const { content, setContent } = useContext(
+    ContentContext,
+    (prev, next) => prev.content !== next.content
+  );
   //isLoading e isError solo evaluan si paso o no, por lo tanto devuelven un boolean, error nos envia todo el error
 
   //queryKey conecta los datos de la peticion dentro de un objeto que designamos para almacenar en caché
