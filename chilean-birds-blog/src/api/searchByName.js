@@ -6,11 +6,9 @@ const birdsApi = axios.create({
   baseURL: "http://localhost:3200",
 });
 
-export const getBirds = async (page = 0) => {
-  const res = await birdsApi.get(`/birds?page=${page}&limit=8`);
-  // const res = await birdsApi.get("/birds");
-  // console.log(res.data);
+export const getBirdsBySearching = async (name) => {
+  const res = await birdsApi.get(`/birds?name=${name}`);
   return res.data;
 };
 
-export default getBirds;
+export default getBirdsBySearching;

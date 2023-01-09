@@ -6,6 +6,11 @@ import { BsFillCloudRainHeavyFill } from "react-icons/bs";
 import { BsFillBookmarkFill } from "react-icons/bs";
 import { FaUserAlt } from "react-icons/fa";
 import { SlMagnifier } from "react-icons/sl";
+import getBirdsBySearching from "../api/searchByName.js";
+import { useQuery } from "@tanstack/react-query";
+import { useState, useContext, useMemo } from "react";
+import { ContentContext } from "./App";
+import BirdsCard from "./BirdsCard";
 
 export const NavBar = () => {
   const handleDarkMode = () => {
@@ -16,6 +21,52 @@ export const NavBar = () => {
       html.classList.remove("dark");
     }
   };
+  const { setContent } = useContext(
+    ContentContext,
+    (prev, next) => prev.content !== next.content
+  );
+  const [name, setName] = useState("");
+
+  const { isLoading, data, isError, error, isSuccess } = useQuery({
+    queryKey: ["search", name],
+    queryFn: () => getBirdsBySearching(name),
+    keepPreviousData: true,
+  });
+
+  const handleSearch = async () => {
+    setContent(
+      await data?.birds?.map((b) => {
+        return (
+          <BirdsCard
+            key={b._id}
+            img={b.main}
+            spanish={b.spanish}
+            latin={b.latin}
+            full={b.full}
+            thumbnail={b.thumbnail}
+            data={{ ...data }}
+          />
+        );
+      })
+    );
+  };
+  const handleRender = useMemo(() => handleSearch(), [data]);
+
+  const displayData = async () => {
+    if (isLoading) <div className="text-5xl"> Loading</div>;
+    else if (isSuccess) {
+      handleRender;
+    } else if (isError) <div className="text-5xl"> Error: {error.message}</div>;
+  };
+
+  const handleChange = (e) => {
+    if (e.key === "Enter") {
+      setName(e.target.value);
+    }
+  };
+
+  window.addEventListener("load", displayData());
+
   return (
     <>
       <div className="sticky top-0 z-10">
@@ -51,6 +102,10 @@ export const NavBar = () => {
         <SlMagnifier className="col-start-1 col-end-2 ml-auto mt-1 mx-1 text-teal-900  dark:text-slate-50 transition ease-in-out delay-150   focus:scale-110  duration-300 absolute lg:max-2xl:left-[163px] md:left-[125px] left-[75px] z-10 group-hover:-translate-x-3" />
         <input
           type="text"
+          name="name"
+          value={name.name}
+          // onChange={handleChange}
+          onKeyDown={handleChange}
           placeholder="Search for Chilean birds"
           className="col-start-2 col-end-5 mr-10 dark:bg-slate-900 dark:border-0 dark:text-slate-50 bg-green-50 rounded-md border transition ease-in-out delay-150   group-hover:scale-110  duration-300 pl-10 lg:max-2xl:pl-7"
         />

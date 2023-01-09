@@ -36,17 +36,17 @@ const BirdDetail = ({ main, full, thumbnail, spanish = "machucao", data }) => {
               />
             </div>
 
-            <div className="col-span-1 grid-rows-3 gap-1 h-full w-4/5 overflow-hidden" >
+            <div className="col-span-1 grid-rows-3 gap-1 h-auto w-4/5 overflow-hidden">
               {images.map((img, i) => (
                 <div
-                  className="relative  cursor-pointer sm:max-2xl:max-h-28 "
+                  className="relative cursor-pointer sm:max-2xl:max-h-24 overflow-hidden"
                   onClick={() => {
                     setIndex(i);
                   }}
                 >
                   {/* <span className="w-full bg-green-200 h-full absolute"></span> */}
                   <img
-                    className=" h-full object-cover m-auto mb-3 w-full "
+                    className=" sm:max-2xl:max-h-24 object-cover m-auto mb-3 w-full "
                     src={img}
                     key={img}
                     alt="imagen detalle de aves"

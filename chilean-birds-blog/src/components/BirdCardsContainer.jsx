@@ -2,6 +2,7 @@ import React from "react";
 import BirdsCard from "./BirdsCard";
 import Pagination from "./Pagination.jsx";
 import getBirds from "../api/productsApi.js";
+import getBirdsBySearching from "../api/searchByName.js";
 import { useQuery } from "@tanstack/react-query";
 import { useState, useContext, useMemo } from "react";
 import { ContentContext } from "./App";
