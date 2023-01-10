@@ -11,6 +11,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useState, useContext, useMemo } from "react";
 import { ContentContext } from "./App";
 import BirdsCard from "./BirdsCard";
+import TituloPagina from "./TituloPagina.jsx";
 
 export const NavBar = () => {
   const handleDarkMode = () => {
@@ -25,6 +26,7 @@ export const NavBar = () => {
     ContentContext,
     (prev, next) => prev.content !== next.content
   );
+
   const [name, setName] = useState("");
 
   const { isLoading, data, isError, error, isSuccess } = useQuery({
@@ -71,7 +73,7 @@ export const NavBar = () => {
     <>
       <div className="sticky top-0 z-10">
         <nav className="bg-green-800 dark:bg-slate-800 grid grid-flow-col justify-between z-30">
-          <h1 className="text-green-50 py-2 ml-10 text-3xl ">Chilean Birds</h1>
+          <TituloPagina />
           <label className="switch">
             <input
               type="checkbox"
@@ -91,8 +93,11 @@ export const NavBar = () => {
             <div className="col-span-4 place-content-center gap-4 grid grid-flow-col md:max-2xl:flex md:max-2xl:flex-col md:max-2xl:mx-auto md:max-2xl:justify-around md:max-2xl:gap-3 ">
               <MdWbSunny className=" text-green-50 dark:text-slate-50 dark:hover:text-slate-300 text-2xl transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:text-slate-200 duration-30 cursor-pointer" />
               <BsFillCloudSunFill className="text-green-50 dark:text-slate-50 dark:hover:text-slate-300 text-2xl transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:text-slate-200 duration-30 cursor-pointer" />
-              <BsFillCloudRainHeavyFill className="text-green-50 dark:text-slate-50 dark:hover:text-slate-300 text-2xl transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:text-slate-200 duration-30 cursor-pointer" />
-              <BsFillBookmarkFill className="text-green-50 dark:text-slate-50 dark:hover:text-slate-300 text-2xl transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:text-slate-200 duration-30 cursor-pointer" />
+              <BsFillCloudRainHeavyFill className=" text-green-50 dark:text-slate-50 dark:hover:text-slate-300 text-2xl transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:text-slate-200 duration-30 cursor-pointer" />
+              <div className="relative transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-30">
+                <BsFillBookmarkFill className="text-green-50 dark:text-slate-50 dark:hover:text-slate-300 text-2xl  hover:text-slate-200 cursor-pointer" />
+                <span className="absolute h-3 w-3 rounded-full top-[-4px] right-0 bg-red-600 dark:bg-indigo-500 text-slate-50 "></span>
+              </div>
             </div>
           </div>
           <FaUserAlt className="text-green-50 dark:text-slate-50 dark:hover:text-slate-300 text-2xl mx-auto  transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:text-green-200 duration-30 cursor-pointer" />
@@ -104,7 +109,6 @@ export const NavBar = () => {
           type="text"
           name="name"
           value={name.name}
-          // onChange={handleChange}
           onKeyDown={handleChange}
           placeholder="Search for Chilean birds"
           className="col-start-2 col-end-5 mr-10 dark:bg-slate-900 dark:border-0 dark:text-slate-50 bg-green-50 rounded-md border transition ease-in-out delay-150   group-hover:scale-110  duration-300 pl-10 lg:max-2xl:pl-7"

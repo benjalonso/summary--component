@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { BsFillBookmarkFill } from "react-icons/bs";
 import { ContentContext } from "./App";
-import BirdDetail from "./BirdDetail.jsx";
+import BirdModal from "./BirdModal.jsx";
 
 const BirdsCard = ({ img, spanish, latin, full, thumbnail, data }) => {
   const {modal, setModal } = useContext(ContentContext,  (prev, next) => prev.modal !== next.modal);
@@ -22,7 +22,7 @@ const BirdsCard = ({ img, spanish, latin, full, thumbnail, data }) => {
   // console.log(images[0])
   return (
     <>
-      <BirdDetail
+      <BirdModal
         main={img}
         full={full}
         thumbnail={thumbnail}

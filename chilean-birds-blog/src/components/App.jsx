@@ -3,6 +3,7 @@ import BirdCardsContainer from "./BirdCardsContainer.jsx";
 import { NavBar } from "./NavBar.jsx";
 import PopularCardsContainer from "./PopularCardsContainer.jsx";
 import Footer from "./Footer.jsx";
+import AuthForm from "./AuthForm.jsx";
 
 export const ContentContext = createContext(null);
 
@@ -15,6 +16,7 @@ function App() {
       <NavBar />
       <PopularCardsContainer />
       <BirdCardsContainer />
+      <AuthForm/>
       <Footer />
     </ContentContext.Provider>
   );

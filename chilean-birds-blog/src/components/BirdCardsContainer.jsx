@@ -2,13 +2,12 @@ import React from "react";
 import BirdsCard from "./BirdsCard";
 import Pagination from "./Pagination.jsx";
 import getBirds from "../api/productsApi.js";
-import getBirdsBySearching from "../api/searchByName.js";
 import { useQuery } from "@tanstack/react-query";
 import { useState, useContext, useMemo } from "react";
 import { ContentContext } from "./App";
 
 const BirdCardsContainer = () => {
-  const { content, setContent } = useContext(
+  const { content, setContent, favorite } = useContext(
     ContentContext,
     (prev, next) => prev.content !== next.content
   );
@@ -57,7 +56,7 @@ const BirdCardsContainer = () => {
           All of them
         </h1>
         <div className="grid grid-cols-2 md:max-3xl:grid-cols-4 place-items-center">
-          {content}
+          {content ? content: favorite}
         </div>
       </div>
       <Pagination

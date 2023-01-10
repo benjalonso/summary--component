@@ -2,7 +2,7 @@ import React from "react";
 import { ContentContext } from "./App";
 import { useContext, useState } from "react";
 
-const BirdDetail = ({ main, full, thumbnail, spanish = "machucao", data }) => {
+const BirdModal = ({ main, full, thumbnail, spanish = "machucao", data }) => {
   const { modal, setModal } = useContext(
     ContentContext,
     (prev, next) => prev.modal !== next.modal
@@ -17,7 +17,6 @@ const BirdDetail = ({ main, full, thumbnail, spanish = "machucao", data }) => {
     <>
       <div
         className={` fixed top-0 bottom-0 left-0 right-0 z-10 hidden md:max-3xl:${modal}`}
-        // "fixed top-0 bottom-0 left-0 right-0 z-10 hidden md:max-3xl:block"
       >
         <div className="bg-green-100 dark:bg-slate-200 z-20 absolute  w-screen h-screen  opacity-25 "></div>
         <div className="w-3/5 md:h-[55vh] lg:max-3xl:h-[67vh] dark:bg-slate-900 bg-green-50 border dark:border-slate-200 border-green-600 absolute z-50 top-[20vh] left-[22vw] rounded-md">
@@ -64,4 +63,4 @@ const BirdDetail = ({ main, full, thumbnail, spanish = "machucao", data }) => {
   );
 };
 
-export default BirdDetail;
+export default BirdModal;
