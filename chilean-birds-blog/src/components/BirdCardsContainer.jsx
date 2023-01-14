@@ -7,7 +7,7 @@ import { useState, useContext, useMemo } from "react";
 import { ContentContext } from "./App";
 
 const BirdCardsContainer = () => {
-  const { content, setContent, favorite } = useContext(
+  const { content, setContent } = useContext(
     ContentContext,
     (prev, next) => prev.content !== next.content
   );
@@ -48,7 +48,9 @@ const BirdCardsContainer = () => {
       handleRender;
     } else if (isError) <div className="text-5xl"> Error: {error.message}</div>;
   };
+
   window.addEventListener("load", displayData());
+
   return (
     <>
       <div className="md:max-2xl:ml-[11vw]">
@@ -56,7 +58,8 @@ const BirdCardsContainer = () => {
           All of them
         </h1>
         <div className="grid grid-cols-2 md:max-3xl:grid-cols-4 place-items-center">
-          {content ? content: favorite}
+          {/* {content ? content : favorite} */}
+          {content}
         </div>
       </div>
       <Pagination

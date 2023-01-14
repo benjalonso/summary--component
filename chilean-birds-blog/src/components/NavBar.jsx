@@ -22,7 +22,7 @@ export const NavBar = () => {
       html.classList.remove("dark");
     }
   };
-  const { setContent } = useContext(
+  const { setContent, setAuthModal, authModal } = useContext(
     ContentContext,
     (prev, next) => prev.content !== next.content
   );
@@ -67,6 +67,10 @@ export const NavBar = () => {
     }
   };
 
+  const handleAuth = () => {
+    setAuthModal("block");
+  };
+
   window.addEventListener("load", displayData());
 
   return (
@@ -100,7 +104,12 @@ export const NavBar = () => {
               </div>
             </div>
           </div>
-          <FaUserAlt className="text-green-50 dark:text-slate-50 dark:hover:text-slate-300 text-2xl mx-auto  transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:text-green-200 duration-30 cursor-pointer" />
+          <FaUserAlt
+            onClick={() => {
+              handleAuth("block");
+            }}
+            className="text-green-50 dark:text-slate-50 dark:hover:text-slate-300 text-2xl mx-auto  transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:text-green-200 duration-30 cursor-pointer"
+          />
         </div>
       </div>
       <div className="group my-2 grid grid-cols-8 md:max-2xl:my-4 md:max-2xl:ml-8 relative">

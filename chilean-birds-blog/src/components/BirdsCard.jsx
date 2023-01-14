@@ -4,22 +4,14 @@ import { ContentContext } from "./App";
 import BirdModal from "./BirdModal.jsx";
 
 const BirdsCard = ({ img, spanish, latin, full, thumbnail, data }) => {
-  const {modal, setModal } = useContext(ContentContext,  (prev, next) => prev.modal !== next.modal);
+  const { setModal } = useContext(
+    ContentContext,
+    (prev, next) => prev.modal !== next.modal
+  );
 
   const handleModal = () => {
     setModal("block");
-    // console.log(modal)
   };
-  // const images = [{ main: [] }, { full: [] }, { thumbnail: [] }];
-
-  // data.birds.map((bi, i) => {
-  //   console.log(bi.main);
-  //   images.map((im) => {
-  //     console.log(im);
-  //   });
-  // });
-
-  // console.log(images[0])
   return (
     <>
       <BirdModal

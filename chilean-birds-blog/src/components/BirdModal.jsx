@@ -7,15 +7,16 @@ const BirdModal = ({ main, full, thumbnail, spanish = "machucao", data }) => {
     ContentContext,
     (prev, next) => prev.modal !== next.modal
   );
-  const [index, setIndex] = useState(0);
-  const images = [main, full, thumbnail];
-
   const handleModal = () => {
     setModal("hidden");
   };
+  const [index, setIndex] = useState(0);
+  const images = [main, full, thumbnail];
+// console.log(modal)
   return (
     <>
       <div
+        // className={'fixed top-0 bottom-0 left-0 right-0 z-10 hidden md:max-3xl:block'}
         className={` fixed top-0 bottom-0 left-0 right-0 z-10 hidden md:max-3xl:${modal}`}
       >
         <div className="bg-green-100 dark:bg-slate-200 z-20 absolute  w-screen h-screen  opacity-25 "></div>
@@ -38,6 +39,7 @@ const BirdModal = ({ main, full, thumbnail, spanish = "machucao", data }) => {
             <div className="col-span-1 grid-rows-3 gap-1 h-auto w-4/5 overflow-hidden">
               {images.map((img, i) => (
                 <div
+                  key={i}
                   className="relative cursor-pointer sm:max-2xl:max-h-24 overflow-hidden"
                   onClick={() => {
                     setIndex(i);

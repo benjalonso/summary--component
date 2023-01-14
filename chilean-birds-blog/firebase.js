@@ -1,20 +1,24 @@
-import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
-// Follow this pattern to import other Firebase services
-// import { } from 'firebase/<service>';
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
 
-// TODO: Replace the following with your app's Firebase project configuration
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  //...
+  apiKey: "AIzaSyDm-K_4sU2V6q_gxT8PBz9g3gcqiWYhfpY",
+  authDomain: "chileanbirds-b8079.firebaseapp.com",
+  projectId: "chileanbirds-b8079",
+  storageBucket: "chileanbirds-b8079.appspot.com",
+  messagingSenderId: "912187175219",
+  appId: "1:912187175219:web:3e590b2db0faedbd0f4e46",
+  measurementId: "G-ECE18C0QZB",
 };
 
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+// const analytics = getAnalytics(app);
 
-// Get a list of cities from your database
-async function getCities(db) {
-  const citiesCol = collection(db, 'cities');
-  const citySnapshot = await getDocs(citiesCol);
-  const cityList = citySnapshot.docs.map(doc => doc.data());
-  return cityList;
-}
+export default app;
