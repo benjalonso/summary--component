@@ -11,7 +11,9 @@ function App() {
   const [content, setContent] = useState([]);
   const [favorite, setFavorite] = useState([]);
   const [modal, setModal] = useState("hidden");
-  const [authModal, setAuthModal] = useState("block");
+  const [idModal, setIdModal] = useState(null);
+  const [contentModal, setContentModal] = useState(null);
+  const [authModal, setAuthModal] = useState("hidden");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   return (
@@ -29,11 +31,16 @@ function App() {
         setPassword,
         authModal,
         setAuthModal,
+        idModal,
+        setIdModal,
+        contentModal,
+        setContentModal,
       }}
     >
       <NavBar />
       <PopularCardsContainer />
       <BirdCardsContainer />
+      {contentModal}
       <AuthForm />
       <Footer />
     </ContentContext.Provider>

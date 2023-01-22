@@ -17,10 +17,7 @@ const AuthForm = () => {
   const handlePassword = (e) => {
     setPassword(e.target.value);
   };
-  // Aquí inicializamos la autenticación de firebase y le pasamos la referencia del servicio
-
   const auth = getAuth(app);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -35,20 +32,21 @@ const AuthForm = () => {
         console.log(userCredential);
       }
       setAuthModal("hidden");
-      console.log(authModal)
+      console.log(authModal);
     } catch (error) {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorMessage);
-      console.log(errorCode);
+      console.log(error.code);
+      console.log(error.message);
+      if (error.code === "auth/email-already-in-use")
+        alert("Email already in use");
+      else if (error.code === "auth/invalid-email") alert("Invalid email");
+      else if (error.code === "auth/weak-password") alert("Invalid password");
+      else if (error.code) alert("something went wrong");
     }
   };
 
   return (
     <>
-      <div
-        className={`fixed top-0 bottom-0 left-0 right-0 z-10  ${authModal}`}
-      >
+      <div className={`fixed top-0 bottom-0 left-0 right-0 z-10  ${authModal}`}>
         <div className="bg-green-100 dark:bg-slate-200 z-20 absolute  w-screen h-screen  opacity-25 "></div>
         <form className="w-[250px] md:h-[320px] lg:max-3xl:h-[380px] dark:bg-slate-900 bg-green-50 border dark:border-slate-200 border-green-600 absolute z-50 top-[25vh] left-[41vw] rounded-md">
           <input

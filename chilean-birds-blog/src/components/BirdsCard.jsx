@@ -1,27 +1,21 @@
 import React, { useContext } from "react";
 import { BsFillBookmarkFill } from "react-icons/bs";
 import { ContentContext } from "./App";
-import BirdModal from "./BirdModal.jsx";
 
-const BirdsCard = ({ img, spanish, latin, full, thumbnail, data }) => {
-  const { setModal } = useContext(
+const BirdsCard = ({ img, spanish, latin, full, thumbnail, id }) => {
+  const { setModal, setIdModal, modal } = useContext(
     ContentContext,
     (prev, next) => prev.modal !== next.modal
   );
 
-  const handleModal = () => {
-    setModal("block");
+  const handleModal = async () => {
+    console.log(id);
+    await setIdModal(id);
+    await setModal("block");
+     console.log(modal);
   };
   return (
     <>
-      <BirdModal
-        main={img}
-        full={full}
-        thumbnail={thumbnail}
-        spanish={spanish}
-        data={data}
-      />
-
       <div
         onClick={handleModal}
         className="font-semibold dark:font-normal h-28 w-40 mx-5 my-5 gap-2 shrink-0 snap-always rounded-lg relative group/item cursor-pointer"
