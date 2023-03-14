@@ -12,8 +12,10 @@ module.exports = {
       },
     },
     colors: {
-      gradient1: "#7755FF",
-      gradient2: "#4D21C9",
+      gradient1a: "#2F2CE9",
+      gradient1b: "#7755FF",
+      gradient2a: "#2521C9",
+      gradient2b: "#4D21C9",
       yellow: "#FFB21E",
       blue: "#1125D6",
       green: "#00BB8F",
@@ -21,6 +23,7 @@ module.exports = {
       darkNavy: "#303B59",
       lightBlue: "#CAC9FF",
       veryLightBlue: "#ECF2FF",
+      white: '#FFFFFF'
 
     },
     fontFamily: {
