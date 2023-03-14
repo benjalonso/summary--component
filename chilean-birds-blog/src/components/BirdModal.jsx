@@ -3,16 +3,20 @@ import { ContentContext } from "./App";
 import { useContext, useState } from "react";
 
 const BirdModal = ({ main, full, thumbnail, spanish = "machucao" }) => {
-  const { modal, setModal } = useContext(
+
+  // const BirdModal = () => {
+  const { modal, setModal, contentModal } = useContext(
     ContentContext,
     (prev, next) => prev.modal !== next.modal
   );
   const handleModal = () => {
     setModal("hidden");
   };
+  console.log(contentModal)
   const [index, setIndex] = useState(0);
-  const images = [main, full, thumbnail];
-// console.log(modal)
+  const images = [contentModal.main = '', contentModal.full = '', contentModal.thumbnail = ''];
+  
+  // console.log(modal)
   return (
     <>
       <div
@@ -56,7 +60,7 @@ const BirdModal = ({ main, full, thumbnail, spanish = "machucao" }) => {
             </div>
           </div>
           <div className=" md:mt-2 lg:max-3xl:mt-16 w-fit mx-auto">
-            <button className="mx-auto border dark:text-slate-50 dark:bg-slate-500 bg-green-700 p-1 lg:max-3xl:p-2 lg:max-3xl:text-xl rounded-md text-green-50 ">{`More of ${spanish}`}</button>
+            <button className="mx-auto border dark:text-slate-50 dark:bg-slate-500 bg-green-700 p-1 lg:max-3xl:p-2 lg:max-3xl:text-xl rounded-md text-green-50 ">{`More of ${contentModal.spanish = 'chucao'}`}</button>
           </div>
         </div>
       </div>

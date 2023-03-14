@@ -21,24 +21,6 @@ const BirdCardsContainer = () => {
       queryFn: () => getBirds(page),
       keepPreviousData: true,
     });
-  let birdModal = null;
-
-  const handleModalData = async () => {
-    let aux = await { ...data.birds[idModal] };
-    console.log(contentModal);
-
-    setContentModal(
-      await (
-        <BirdModal
-          main={aux.img}
-          full={aux.full}
-          thumbnail={aux.thumbnail}
-          spanish={aux.spanish}
-          data={aux.data}
-        />
-      )
-    );
-  };
 
   const handleCards = async () => {
     setContent(
@@ -58,13 +40,24 @@ const BirdCardsContainer = () => {
     );
   };
 
+  const handleModalData = async () => {
+    let aux = { ...data?.birds[idModal] };
+    setContentModal({
+      main: aux.main,
+      full: aux.full,
+      thumbnail: aux.thumbnail,
+      spanish: aux.spanish,
+    });
+  };
+
   const handleRender = useMemo(() => handleCards(), [data]);
+  const handleModalRender = useMemo(() => handleModalData(), [idModal]);
 
   const displayData = async () => {
     if (isLoading) <div className="text-5xl"> Loading</div>;
     else if (isSuccess) {
       handleRender;
-      handleModalData;
+      handleModalRender;
     } else if (isError) <div className="text-5xl"> Error: {error.message}</div>;
   };
 
